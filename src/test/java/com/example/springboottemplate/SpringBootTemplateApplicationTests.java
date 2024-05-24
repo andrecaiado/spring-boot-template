@@ -18,7 +18,7 @@ class SpringBootTemplateApplicationTests {
 	private EmployeeService employeeService;
 
 	@Test
-	void givenInitialDb_whenGetAllEmpoyees_shouldReturn20() {
+	void givenInitialDb_whenGetAllEmployees_shouldReturn20() {
 		assertEquals(20, employeeService.getAllEmployees().size());
 	}
 
