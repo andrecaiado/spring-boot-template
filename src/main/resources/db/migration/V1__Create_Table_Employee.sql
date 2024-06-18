@@ -1,5 +1,5 @@
 CREATE TABLE if not exists employee (
-    id integer,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     first_name varchar(250),
     last_name varchar(250),
     age integer,
@@ -9,6 +9,5 @@ CREATE TABLE if not exists employee (
     address varchar(250),
     date_of_birth date,
     created_at timestamp,
-    updated_at timestamp,
-    PRIMARY KEY (id)
+    updated_at timestamp
 );
