@@ -3,6 +3,7 @@ package com.example.springboottemplate.service;
 import com.example.springboottemplate.dto.CreateEmployeeDto;
 import com.example.springboottemplate.dto.EmployeeDto;
 import com.example.springboottemplate.entity.Employee;
+import com.example.springboottemplate.exception.EmployeeNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class EmployeeService {
         if(employeeById != null){
             return toEmployeeDto(employeeById);
         }
-        throw new RuntimeException("Employee not found");
+        throw new EmployeeNotFoundException("Employee not found");
     }
 
     private Employee findEmployeeById(Integer id){
@@ -70,7 +71,7 @@ public class EmployeeService {
     public EmployeeDto updateEmployee (Integer id, CreateEmployeeDto employeeDto) {
         Employee employeeById = findEmployeeById(id);
         if(employeeById == null){
-            throw new RuntimeException("Employee not found");
+            throw new EmployeeNotFoundException("Employee not found");
         }
 
         employeeById.setFirstName(employeeDto.firstName());
