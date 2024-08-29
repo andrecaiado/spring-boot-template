@@ -10,24 +10,12 @@
 			"name": "Get employee by id",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "username",
-							"value": "user",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "cb77687b-0c47-4051-b1aa-7550965cd6b6",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/employees/1",
+					"raw": "localhost:8080/api/v1/employees/21",
 					"host": [
 						"localhost"
 					],
@@ -36,7 +24,7 @@
 						"api",
 						"v1",
 						"employees",
-						"1"
+						"21"
 					]
 				}
 			},
@@ -46,19 +34,7 @@
 			"name": "Get employees",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "username",
-							"value": "user",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "cb77687b-0c47-4051-b1aa-7550965cd6b6",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
@@ -94,7 +70,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"André\",\n    \"lastName\": \"Caiado\",\n    \"age\": 44,\n    \"designation\": \"Inverse local framework\",\n    \"phoneNumber\": \"501-193-9165\",\n    \"joinedOn\": \"2023-06-12\",\n    \"address\": \"11th Floor\",\n    \"dateOfBirth\": \"2023-03-01\"\n}",
+					"raw": "{\n    \"firstName\": \"David\",\n    \"lastName\": \"Brent\",\n    \"age\": 50,\n    \"designation\": \"Inverse local framework\",\n    \"phoneNumber\": \"501-193-9165\",\n    \"joinedOn\": \"2023-06-12\",\n    \"address\": \"11th Floor\",\n    \"dateOfBirth\": \"2023-03-01\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -123,7 +99,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Andréss\",\n    \"lastName\": \"Caiado\",\n    \"age\": 44,\n    \"designation\": \"Inverse local framework\",\n    \"phoneNumber\": \"501-193-9165\",\n    \"joinedOn\": \"2023-06-12\",\n    \"address\": \"11th Floor\",\n    \"dateOfBirth\": \"2023-03-01\"\n}",
+					"raw": "{\n    \"firstName\": \"Michael\",\n    \"lastName\": \"Scott\",\n    \"age\": 50,\n    \"designation\": \"Inverse local framework\",\n    \"phoneNumber\": \"501-193-9165\",\n    \"joinedOn\": \"2023-06-12\",\n    \"address\": \"11th Floor\",\n    \"dateOfBirth\": \"2023-03-01\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
