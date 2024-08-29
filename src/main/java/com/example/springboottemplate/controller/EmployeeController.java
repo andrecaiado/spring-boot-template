@@ -1,14 +1,18 @@
 package com.example.springboottemplate.controller;
 
-import com.example.springboottemplate.entity.Employee;
+import com.example.springboottemplate.dto.CreateEmployeeDto;
+import com.example.springboottemplate.dto.EmployeeDto;
 import com.example.springboottemplate.service.EmployeeService;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/employee/v1")
+@RequestMapping("/api/v1/employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -17,68 +21,30 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    /**
-     * This method is called when a GET request is made
-     * URL: localhost:8080/employee/v1/
-     * Purpose: Fetches all the employees in the employee table
-     * @return List of Employees
-     */
-    @GetMapping("/")
-    public ResponseEntity<List<Employee>> getAllEmployees(){
-        return ResponseEntity.ok().body(employeeService.getAllEmployees());
+    @GetMapping()
+    public ResponseEntity<List<EmployeeDto>> getAllEmployees(@PageableDefault(page = 0, size = 10) Pageable pageable){
+        return ResponseEntity.ok().body(employeeService.getAllEmployees(pageable));
     }
 
-    /**
-     * This method is called when a GET request is made
-     * URL: localhost:8080/employee/v1/1 (or any other id)
-     * Purpose: Fetches employee with the given id
-     * @param id - employee id
-     * @return Employee with the given id
-     */
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id)
-    {
+    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Integer id) {
         return ResponseEntity.ok().body(employeeService.getEmployeeById(id));
     }
 
-    /**
-     * This method is called when a POST request is made
-     * URL: localhost:8080/employee/v1/
-     * Purpose: Save an Employee entity
-     * @param employee - Request body is an Employee entity
-     * @return Saved Employee entity
-     */
-    @PostMapping("/")
-    public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee)
-    {
-        return ResponseEntity.ok().body(employeeService.saveEmployee(employee));
+    @PostMapping()
+    public ResponseEntity<EmployeeDto> saveEmployee(@RequestBody CreateEmployeeDto employee) {
+        return new ResponseEntity<>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
     }
 
-    /**
-     * This method is called when a PUT request is made
-     * URL: localhost:8080/employee/v1/
-     * Purpose: Update an Employee entity
-     * @param employee - Employee entity to be updated
-     * @return Updated Employee
-     */
-    @PutMapping("/")
-    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee)
-    {
-        return ResponseEntity.ok().body(employeeService.updateEmployee(employee));
+    @PutMapping("/{id}")
+    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Integer id, @RequestBody CreateEmployeeDto employee) {
+        return ResponseEntity.ok().body(employeeService.updateEmployee(id, employee));
     }
 
-    /**
-     * This method is called when a PUT request is made
-     * URL: localhost:8080/employee/v1/1 (or any other id)
-     * Purpose: Delete an Employee entity
-     * @param id - employee's id to be deleted
-     * @return a String message indicating employee record has been deleted successfully
-     */
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEmployeeById(@PathVariable Integer id)
-    {
+    public ResponseEntity<String> deleteEmployeeById(@PathVariable Integer id) {
         employeeService.deleteEmployeeById(id);
-        return ResponseEntity.ok().body("Deleted employee successfully");
+        return ResponseEntity.ok().body("Employee deleted successfully");
     }
 
 }
