@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employee/v1")
+@RequestMapping("/api/v1/employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -21,7 +21,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<EmployeeDto>> getAllEmployees(@PageableDefault(page = 0, size = 10) Pageable pageable){
         return ResponseEntity.ok().body(employeeService.getAllEmployees(pageable));
     }
@@ -31,7 +31,7 @@ public class EmployeeController {
         return ResponseEntity.ok().body(employeeService.getEmployeeById(id));
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<EmployeeDto> saveEmployee(@RequestBody CreateEmployeeDto employee) {
         return new ResponseEntity<>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
     }
