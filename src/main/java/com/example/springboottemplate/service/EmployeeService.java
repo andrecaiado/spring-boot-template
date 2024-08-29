@@ -91,6 +91,10 @@ public class EmployeeService {
     }
 
     public void deleteEmployeeById (Integer id) {
+        Employee employeeById = findEmployeeById(id);
+        if(employeeById == null){
+            throw new EmployeeNotFoundException("Employee not found");
+        }
         employeeRepository.deleteById(id);
     }
 

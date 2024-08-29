@@ -2,10 +2,10 @@ package com.example.springboottemplate.controller;
 
 import com.example.springboottemplate.dto.CreateEmployeeDto;
 import com.example.springboottemplate.dto.EmployeeDto;
-import com.example.springboottemplate.entity.Employee;
 import com.example.springboottemplate.service.EmployeeService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +33,7 @@ public class EmployeeController {
 
     @PostMapping("/")
     public ResponseEntity<EmployeeDto> saveEmployee(@RequestBody CreateEmployeeDto employee) {
-        return ResponseEntity.ok().body(employeeService.saveEmployee(employee));
+        return new ResponseEntity<>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -44,7 +44,7 @@ public class EmployeeController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEmployeeById(@PathVariable Integer id) {
         employeeService.deleteEmployeeById(id);
-        return ResponseEntity.ok().body("Deleted employee successfully");
+        return ResponseEntity.ok().body("Employee deleted successfully");
     }
 
 }
